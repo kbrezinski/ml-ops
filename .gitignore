@@ -1,0 +1,6 @@
+/.flake8
+/logs
+/mlops.egg-info
+/pyproject.toml
+/stores
+/venv
