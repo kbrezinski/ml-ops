@@ -19,6 +19,7 @@ ML-Ops is a Python package for managing machine learning models. It provides a f
   - [Table of Contents](#table-of-contents)
   - [Package Installation](#package-installation)
   - [Docstring Generation](#docstring-generation)
+  - [Testing](#testing)
 
 ## Package Installation
 
@@ -51,6 +52,21 @@ theme: readthedocs
 nav:
   - Home: index.md
   - API Reference: api.md
+```
+
+## Testing
+
+If performing unit tests, it is possible to install via test mode:
+
+```bash
+python3 -m pip install -e .[test]       # installs only test packages, i.e. pytest
+```
+
+Then run the following command to run various unit tests:
+
+```bash
+python3 -m pytest tests  # runs all unit tests
+python3 -m pytest tests/{subdir}/test_file.py::test_fn  # run unit test for specific function
 ```
 
 
