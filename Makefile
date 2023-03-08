@@ -35,4 +35,10 @@ venv:
     python3 -m pip install pip setuptools wheel && \
     python3 -m pip install -e .
 
-	
+# Test; will include testing schemas for GE
+.PHONY: test
+test:
+    pytest -m "not training"
+    cd tests && great_expectations checkpoint run projects
+    cd tests && great_expectations checkpoint run tags
+    cd tests && great_expectations checkpoint run labeled_projects
