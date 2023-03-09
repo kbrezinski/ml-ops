@@ -29,11 +29,15 @@ clean: style
 
 # Environment; ensure all commands are run in the same shell 
 # .ONESHELL: # if `&&` is not used
+# also includes pre-commit hooks
+.ONESHELL:
 venv:
     python3 -m venv venv
     source venv/bin/activate && \
     python3 -m pip install pip setuptools wheel && \
-    python3 -m pip install -e .
+    python3 -m pip install -e ".[dev]" && \
+	pre-commit install && \
+	pre-commit autoupdate
 
 # Test; will include testing schemas for GE
 .PHONY: test
@@ -42,3 +46,12 @@ test:
     cd tests && great_expectations checkpoint run projects
     cd tests && great_expectations checkpoint run tags
     cd tests && great_expectations checkpoint run labeled_projects
+
+# Makefile; added local data to gitignore so that it is stored as 
+# a blob store in DVC
+.PHONY: dvc
+dvc:
+    dvc add data/projects.csv
+    dvc add data/tags.csv
+    dvc add data/labeled_projects.csv
+    dvc push
