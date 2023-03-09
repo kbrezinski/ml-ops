@@ -32,11 +32,14 @@ Install from source using either standard or dev mode:
 
 ```bash
 python3 -m pip install -e .            # installs required packages only
-```
-
-```bash
 python3 -m pip install -e .[dev]       # installs required packages and dev packages
 ```
+Alternatively, install using `make` which will create the environment and update the pre-commit hooks:
+```bash
+make env
+```
+
+
 
 ## Docstring Generation
 

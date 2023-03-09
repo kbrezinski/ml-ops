@@ -1,9 +1,7 @@
-/.flake8
-/logs
-/mlops.egg-info
-/pyproject.toml
-/stores
-/tests/great_expectations
+logs/
+stores/
+tests/great_expectations/
+#data/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
