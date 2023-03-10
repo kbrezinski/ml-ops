@@ -68,8 +68,26 @@ python3 -m pip install -e .[test]       # installs only test packages, i.e. pyte
 Then run the following command to run various unit tests:
 
 ```bash
-python3 -m pytest tests  # runs all unit tests
+python3 -m pytest tests                                 # runs all unit tests
 python3 -m pytest tests/{subdir}/test_file.py::test_fn  # run unit test for specific function
 ```
 
+Alternatively, ypu may use the `great_expectations` package to test a sample batch of data for a given checkpoint
 
+```bash
+great_exectations init             # initialize a new folder
+great_expectations datasource new  # points to new datasource
+```
+
+Then, create a new Expectations Suite and checkpoint:
+
+```bash
+great_expectations suite new <SUITE_NAME>      # suite of tests
+great_expectations checkpoint new <CHECKPOINT_NAME> # checkpoint to run tests
+```
+
+Suites will be saved in `great_expectations/expectations` and checkpoints will be saved in `great_expectations/checkpoints`. To run the checkpoint, use the following command:
+
+```bash
+great_expectations checkpoint run <CHECKPOINT_NAME>
+```

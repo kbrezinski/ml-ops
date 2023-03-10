@@ -1,4 +1,5 @@
-dvc==2.43.1
+dvc==2.10.2
+fsspec==2022.11.0
 fastapi==0.78.0
 imbalanced-learn==0.8.1
 mlflow==1.23.1
@@ -13,5 +14,3 @@ snorkel==0.9.8
 streamlit==1.10.0
 typer==0.4.1
 uvicorn==0.17.6
-pytest==7.1.2
-pytest-cov==2.10.1

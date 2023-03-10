@@ -1,0 +1,36 @@
+
+# responsbile for conducting tests
+name: testing
+on: # does so on push and pull requests
+  push:
+    branches:
+    - main
+    - master
+  pull_request:
+    branches:
+    - main
+    - master
+jobs: # jobs are run on a runner on the following OS
+  test-code:
+    runs-on: ubuntu-latest # use needs: to require another job to pass
+    steps:
+    - name: Checkout repo
+        uses: actions/checkout@v2
+    - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+        python-version: 3.9.1
+    - name: Caching
+        uses: actions/cache@v2
+        with:
+        path: $/{/{ env.pythonLocation /}/}
+        key: $/{/{ env.pythonLocation /}/}-$/{/{ hashFiles('setup.py') /}/}-$/{/{ hashFiles('requirements.txt') /}/}
+    - name: Install dependencies
+        run: |
+        python -m pip install -e ".[test]" --no-cache-dir
+    - name: Execute tests
+        run: pytest tests/tagifai --ignore tests/tagifai/test_main.py --ignore tests/tagifai/test_data.py
+# ignore test_main and test_data since artificats are not available to the runners
+# if we use blob storage to store data and models we can run tests
+# secrets: credentials use to access resources
+# cache: if setups files dont change, uses a cached version

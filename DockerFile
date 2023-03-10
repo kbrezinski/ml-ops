@@ -23,7 +23,7 @@ COPY data data
 COPY config config
 COPY stores stores
 
-# Pull assets from S3
+# Pull assets from local stores or from S3
 RUN dvc init --no-scm
 RUN dvc remote add -d storage stores/blob
 RUN dvc pull
